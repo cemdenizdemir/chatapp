@@ -1,0 +1,43 @@
+<%- include("./partials/header") %>
+<link href="/css/access.css" rel="stylesheet">
+
+<% if(locals.error){ %>
+<div id="access-error-message-container">
+    <div id="access-error-message">  
+            <p><%= error %></p>       
+    </div>
+</div>
+<% } %>
+
+<div id="access-container">
+    <div id="logo-and-tagline">
+        <div id="logo">
+            <img src="/img/logo.png">
+        </div>
+        <div id="tagline">
+            <p>Mesajlaşmanın en güzel yolu</p>
+        </div>
+    </div>
+
+    <div id="inputs">
+        <form method="post" id="login-form" action="/">
+            <input name="accessType" value="login" style="display:none">
+            <input id="email" name="email" placeholder="email" required="true">
+            <input id="password" type="password" name="password" placeholder="şifre" required="true">
+            <button id="login-button">Giriş Yap</button>
+            <a href="">Şifreni mi unuttun</a>
+        </form>
+        <div id="signup-form-container">
+            <form method="post" id="signup-form" action="/">
+                <input name="accessType" value="sign-up" style="display:none">
+                <input id="name" name="name" placeholder="name" >
+                <input id="email" name="email" placeholder="email" required="true">
+                <input id="password" type="password" name="password" placeholder="şifre (minimum 7 karakter)" required="true" minlength="">
+                <input id="password-again" type="password" name="password_again" placeholder="şifre tekrar" required="true">
+                <button id="signup-button">Yeni Hesap Oluştur</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/js/accessScript.js"></script>
+<%- include("./partials/footer") %>

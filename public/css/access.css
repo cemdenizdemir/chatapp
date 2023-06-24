@@ -1,0 +1,114 @@
+#access-container{ 
+    display: flex;
+    width: min-content;
+    margin: auto;
+    margin-top: 10rem;
+}
+
+#access-container #logo-and-tagline {
+    margin-right: 8rem;
+    vertical-align: center;
+    justify-content:center;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 23rem;
+}
+
+#access-container #tagline{
+    font-size: 1.5rem;
+    margin-left: 1rem
+}
+
+#access-container #inputs{
+    border: 1px solid black;
+    border-radius:0.5rem;
+    padding: 1.8rem;
+    background-color: white}
+
+#access-container #inputs *{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+#access-container #inputs input {
+    height: 2rem;
+    width: 20rem;
+    padding: 0.5rem;
+    text-indent: 0.6rem;
+    font-size: 1.1rem;
+    border: 1px solid rgb(190, 190, 190)
+}
+
+#access-container #login-form {
+    margin-top: 0;
+    padding-bottom: 0.5rem
+}
+
+#access-container button {
+    color: white;
+    margin: auto;
+    margin-top: 0.8rem !important;
+    height: 3rem;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: none
+}
+
+#login-button {
+    width: 21.2rem;
+    background-color: rgb(54, 68, 148)
+}
+
+#login-button:hover{
+    cursor: pointer;
+    background-color:rgb(48, 62, 142);
+}
+
+#signup-form-container:before{
+    content: "";
+    width:105%;
+    height: 0.15rem;
+    margin-top: 1rem;
+    background-color: black;
+}
+
+#signup-button {
+    width: 13rem;
+    background-color:rgb(49, 143, 77);
+}
+
+#signup-button:hover {
+    cursor: pointer;
+    background-color: rgb(42, 136, 70)
+}
+
+#access-error-message-container{
+    display:flex;
+    vertical-align: center;
+    justify-content:center;
+}
+#access-error-message{
+    position: absolute;
+    width: 40rem;
+    height: 3.5rem;
+    background-color: rgb(198, 85, 85);
+    color: white;
+    border: 0.3rem solid rgb(158, 45, 45);
+    text-align:center
+}
+
+@media screen and (max-width: 57rem){
+    #access-container {
+        flex-direction:column;
+        margin-top: 0;
+    }
+    #logo-and-tagline {
+        position:relative;
+        left:50%;
+        transform: translateX(-50%);
+    }
+}

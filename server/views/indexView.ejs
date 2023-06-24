@@ -1,0 +1,418 @@
+<%- include("./partials/header") %>
+<link href="/css/access.css" rel="stylesheet">
+
+<div id="page-container">
+
+    <div id="full-image-container">
+        <div id="full-page-content">
+            <div>
+                <p></p>
+                <button>X</button>
+            </div>
+            
+            <img>
+        </div>  
+    </div>
+    
+
+    <div id="sidebar">
+        <div id="side-options-menu">
+            <div id="side-menu-header">
+                <div id="side-menu-close-button"></div>
+                <div id="side-menu-header-text"></div>
+            </div>
+
+            <div id="add-friend">
+                <div class="search-div">
+                    <input class="search" placeholder="kullanıcı ara">
+                    <div class="search-button"></div>
+                </div>
+
+                <button id="see-or-hide-requests" onclick="seeOrHideRequests()">İstekleri gör (3)</button>
+                <div id="friend-requests">
+                    
+                    <div id="requests-container">
+                        
+                        <!-- <div class="request">
+                            <div class="sender-info">
+                                <img src="/img/dorapp.png">
+                                <div class="request-sender">Cem </div>
+                                <div class="common-friends">3 Ortak Arkadaş</div>
+                            </div>
+                            
+                            <div class="accept-or-refuse">
+                                <div class="accept"> + </div>
+                                <div class="refuse"> x </div>
+                                <div class="block"> o </div>
+                            </div>
+                        </div>
+                        
+                        <div class="request">
+                            <div class="sender-info">
+                                <img src="/img/blankpp.png">
+                                <div class="request-sender">Cem </div>
+                                <div class="common-friends">3 Ortak Arkadaş</div>
+                            </div>
+                            
+                            <div class="accept-or-refuse">
+                                <div class="accept" onclick="acceptFriendRequest()"> + </div>
+                                <div class="refuse"> x </div>
+                                <div class="block"> o </div>
+                            </div>
+                        </div>
+
+                        <div class="request">
+                            <div class="sender-info">
+                                <img src="/img/blankpp.png">
+                                <div class="request-sender">Cem </div>
+                                <div class="common-friends">3 Ortak Arkadaş</div>
+                            </div>
+                            
+                            <div class="accept-or-refuse">
+                                <div class="accept"> + </div>
+                                <div class="refuse"> x </div>
+                                <div class="block"> o </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+                    
+                </div>
+
+                <div class="loading-icon" id="add-friend-loading-icon">
+                    <img src="/img/loading.gif">
+                </div>
+                
+                <div id="no-user-found">
+                    <p>Aradığınız kullanıcı bulunamadı</p>
+                </div>
+
+                <div id="users-found">
+                    <!-- <div class="found-user-box">
+                        <img src="/img/cemprofil.jpg">
+                        <div>
+                            <span id="name">Lorem İpsum dot sit amet</span>
+                            <span id="common-friends">Ortak arkadaşlar: 3</span>
+                            <div class="visit-profile">Profili gör</div>
+                            <div class="add-friend-button"></div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+            <div id="see-settings">
+
+                <div id="settings-header">
+                    <img src="/img/<%= profileImageBig %>.png %> ">
+                    <div id="edit-profile-pop" title="<%= user.name %>">
+                        <p>Profil resmini değiştir</p>
+                        <ul id="edit-profile-image-settings">
+                            <li title="<%= user._id %>">Fotoğrafı gör</li>
+                            <li>Fotoğraf yükle</li>
+                            <li>
+                                Fotoğrafı kaldır 
+                                <div class="draggable-switch">
+                                    <div class="switch"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div><%= user.name %></div>
+
+                </div>
+                <div id="profile-details">
+                    <div class="line" id="name">  <p> İsim </p>
+                        <div class="attribute"> <%= user.name %> </div>  
+                        <button class="avaible-editing" onclick="avaibleEditing('name')"></button>
+                    </div>
+                    <div class="line" id="email"> <p> Email </p>
+                        <div class="attribute"> <%= user.email %> </div>  
+                        <button class="avaible-editing" onclick="avaibleEditing('email')"></button>
+                    </div>
+                    <div class="line" id="url"><p> Url </p> 
+                        <div class="attribute"> <%= user.url %> </div>  
+                        <button class="avaible-editing" onclick="avaibleEditing('url')"></button>
+                    </div>
+                    <div class="line" id="password"> <p>Şifre </p>
+                        <div class="attribute"> *** </div>  
+                        <button class="avaible-editing" onclick="avaibleEditing('password')"></button>
+                    </div>
+                    <div id="confirm-password">
+                        <p>Değişiklikleri kaydetmek için mevcut şifrenizi giriniz</p>
+                        <input>
+                        <button class="avaible-editing" onclick="avaibleEditing('password')"></button>
+                    </div>
+                </div>
+
+
+            </div>
+
+            
+        </div>
+
+        <div id="sidebar-header" class="header">
+            <img id="profile-picture" src="/img/<%= profileImageSmall %>.png" > 
+            <span id="user-name"><%= user.name %></span>
+            <div id="sidebar-options">
+                <div id="new-chat"></div>
+                <div id="settings"></div>
+                <div id="settings-options">
+                    <ul>
+                        <li>Arkadaş Ekle</li>
+                        <li>Ayarlar</li>
+                        <li>Çıkış</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="search-bar">
+            <input placeholder="sohbet arayın">
+            <div id="filter-unread-chat"></div>
+        </div>
+
+        <div id="messages">
+            <div class="message-box">
+                <img src="/img/cenk.png">
+                <div class="message-container">
+                    <div class="row1">
+                        <div class="room-name">
+                            Lorem ipsum
+                        </div>
+                        <div class="send-time">
+                            11:30
+                        </div>
+                    </div>
+                    <div class="row2">
+                        <div class="last-message">
+                            <span class="sender">Cem Deniz</span>lorem ipsum dolor sit amet consectetur adipiscing elit
+                        </div>
+                        <div class="notification">
+                            1
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="message-box">
+                <img src="/img/kravatpp.png">
+                <div class="message-container">
+                    <div class="row1">
+                        <div class="room-name">
+                            Lorem ipsum
+                        </div>
+                        <div class="send-time">
+                            01.08.2022
+                        </div>
+                    </div>
+                    <div class="row2">
+                        <div class="last-message">
+                            <span class="sender">Cem Deniz</span>lorem ipsum dolor sit amet consectetur adipiscing elit
+                        </div>
+                        <div class="notification">
+                            111
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            
+            <div class="message-box">
+                <img src="/img/dorapp.png">
+                <div class="message-container">
+                    <div class="row1">
+                        <div class="room-name">
+                            Lorem ipsum
+                        </div>
+                        <div class="send-time">
+                            11:30
+                        </div>
+                    </div>
+                    <div class="row2">
+                        <div class="last-message">
+                            <span class="sender">Cem Deniz</span>lorem ipsum dolor sit amet consectetur adipiscing elit
+                        </div>
+                        <div class="notification">
+                            1
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="message-box">
+                <img src="/img/cenk.png">
+                <div class="message-container">
+                    <div class="row1">
+                        <div class="room-name">
+                            Lorem ipsum
+                        </div>
+                        <div class="send-time">
+                            11:30
+                        </div>
+                    </div>
+                    <div class="row2">
+                        <div class="last-message">
+                            <span class="sender">Cem Deniz</span>lorem ipsum dolor sit amet consectetur adipiscing elit
+                        </div>
+                        <div class="notification">
+                            1
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="message-box">
+                <img src="/img/kravatpp.png">
+                <div class="message-container">
+                    <div class="row1">
+                        <div class="room-name">
+                            Lorem ipsum
+                        </div>
+                        <div class="send-time">
+                            01.08.2022
+                        </div>
+                    </div>
+                    <div class="row2">
+                        <div class="last-message">
+                            <span class="sender">Cem Deniz</span>lorem ipsum dolor sit amet consectetur adipiscing elit
+                        </div>
+                        <div class="notification">
+                            111
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            
+            <div class="message-box">
+                <img src="/img/dorapp.png">
+                <div class="message-container">
+                    <div class="row1">
+                        <div class="room-name">
+                            Lorem ipsum
+                        </div>
+                        <div class="send-time">
+                            11:30
+                        </div>
+                    </div>
+                    <div class="row2">
+                        <div class="last-message">
+                            <span class="sender">Cem Deniz</span>lorem ipsum dolor sit amet consectetur adipiscing elit
+                        </div>
+                        <div class="notification">
+                            1
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="message-box">
+                <img src="/img/dorapp.png">
+                <div class="message-container">
+                    <div class="row1">
+                        <div class="room-name">
+                            Lorem ipsum
+                        </div>
+                        <div class="send-time">
+                            01.08.2022
+                        </div>
+                    </div>
+                    <div class="row2">
+                        <div class="last-message">
+                            <span class="sender">Cem Deniz</span>lorem ipsum dolor sit amet consectetur adipiscing elit
+                        </div>
+                        <div class="notification">
+                            111
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+        </div>
+
+    </div>
+    <div id="message-info">
+        <div id="message-header" class="header">
+            <img src="/img/cemprofil.jpg">
+            <span id="sender">Lorem İpsum DotLorem İpsum Dot</span>
+            <span id="last-seen">Son görülme: Bugün 15:15</span>
+            <div id="message-options"></div>
+        </div>
+        
+        <div id="message-body">
+            <div id="content">
+
+                
+                <div class="message-notification">01.04.2020</div>
+                <div class="received received-first">
+                    Merhaba cem
+                </div>
+                <div class="received ">
+                    Ben lorem ipsum
+                </div>
+                <div class="sent sent-first">
+                    Merhaba Lorem ipsun
+                </div>
+                <div class="received received-first">
+                    abcçdefg hıijklmn oöprsştuüvyz
+                </div>
+                <div class="sent sent-first">
+                    lorem ipsum dolor sit amet consectetur adipiscing elit
+                </div>
+
+                <div class="message-notification">20.06.2022</div>
+                <div class="received received-first">
+                    Merhaba cem
+                </div>
+                <div class="received ">
+                    Ben lorem ipsum
+                </div>
+                <div class="sent sent-first">
+                    Merhaba Lorem ipsun
+                </div>
+                <div class="received received-first">
+                    abcçdefg hıijklmn oöprsştuüvyz
+                </div>
+                <div class="sent sent-first">
+                    lorem ipsum dolor sit amet consectetur adipiscing elit
+                </div>
+
+                <div class="message-notification">BUGÜN</div>
+                <div class="received received-first">
+                    Merhaba cem
+                </div>
+                <div class="received ">
+                    Ben lorem ipsum
+                </div>
+                <div class="sent sent-first">
+                    Merhaba Lorem ipsun
+                </div>
+                <div class="received received-first">
+                    abcçdefg hıijklmn oöprsştuüvyz
+                </div>
+                <div class="sent sent-first">
+                    lorem ipsum dolor sit amet consectetur adipiscing elit
+                </div>
+            </div>
+        </div>
+
+        <div id="message-footer" class="header">
+            <div id="emoticon"></div>
+            <div id="attachment"></div>
+            <div id="message">
+                <input placeholder="Bir mesaj yazın">
+            </div>
+            <div id="record"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/indexScript.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/sidebarScript.js"></script>
+<%- include("./partials/footer") %>
